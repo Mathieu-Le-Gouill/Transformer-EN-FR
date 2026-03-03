@@ -1,7 +1,6 @@
 import torch
 from utils import translate_sentences
 from transformers import AutoTokenizer
-from model.transformer import Transformer
 
 if __name__ == "__main__":
 
@@ -12,33 +11,7 @@ if __name__ == "__main__":
     fr_tokenizer = AutoTokenizer.from_pretrained("camembert-base")
 
     # Load model
-    checkpoint = torch.load("best_transformer.pt", map_location=device)
-    config = checkpoint["config"]
-
-    # Recreate the model with the same architecture
-    model = Transformer(
-        src_voc_size=config["src_voc_size"],
-        target_voc_size=config["target_voc_size"],
-
-        src_pad_id=config["src_pad_id"],
-        target_pad_id=config["target_pad_id"],
-
-        target_bos_id=config["target_bos_id"],
-        target_eos_id=config["target_eos_id"],
-
-        d_model=config["d_model"],
-        num_heads=config["num_heads"],
-        num_layers=config["num_layers"],
-        d_ff=config["d_ff"],
-
-        dropout=config["dropout"],
-
-        max_len=config["max_len"],
-        device=device
-    ).to(device)
-
-    # Load weights
-    model.load_state_dict(checkpoint["model_state_dict"])
+    model = torch.load("best_transformer_full.pt", map_location=device)
     model.eval()
 
     # Test sentences

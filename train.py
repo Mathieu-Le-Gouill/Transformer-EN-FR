@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
-from utils import prepare_dataset, save_model
+from utils import prepare_dataset
 from model.transformer import Transformer
 from datasets import load_dataset
 import os
@@ -123,7 +123,7 @@ if __name__ == "__main__":
         if avg_test_loss < best_test_loss:
             best_test_loss = avg_test_loss
             patience_counter = 0
-            save_model(model, os.path.join(checkpoint_dir, "transformer.pt"))
+            torch.save(model, os.path.join(checkpoint_dir, "transformer.pt"))
         else:
             patience_counter += 1
             if patience_counter >= early_stop_patience:

@@ -131,23 +131,3 @@ def translate_sentences(model, tokenizer_src, tokenizer_target, sentences, max_l
     ]
 
     return translations
-
-def save_model(model, filepath):
-    torch.save(
-    {
-        "model_state_dict": model.state_dict(),
-        "config": {
-            "d_model": model.d_model,
-            "num_heads": model.num_heads,
-            "num_layers": model.num_layers,
-            "d_ff": model.d_ff,
-            "dropout": model.dropout,
-            "src_voc_size": model.enc_embedding.vocab_size,
-            "target_voc_size": model.dec_embedding.vocab_size,
-            "src_pad_id": model.src_pad_id,
-            "target_pad_id": model.target_pad_id,
-            "target_bos_id": model.target_bos_id,
-            "target_eos_id": model.target_eos_id,
-            "max_len": model.max_len
-        }
-    }, filepath)
