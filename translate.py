@@ -1,6 +1,7 @@
 import torch
 from utils import translate_sentences
 from transformers import AutoTokenizer
+import os
 
 if __name__ == "__main__":
 
@@ -10,8 +11,12 @@ if __name__ == "__main__":
     eng_tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
     fr_tokenizer = AutoTokenizer.from_pretrained("camembert-base")
 
+    # Model saving path
+    checkpoint_dir = "./checkpoints"
+    os.makedirs(checkpoint_dir, exist_ok=True)
+
     # Load model
-    model = torch.load("best_transformer_full.pt", map_location=device)
+    model = torch.load(os.path.join(checkpoint_dir, "transformer.pt"), map_location=device)
     model.eval()
 
     # Test sentences
