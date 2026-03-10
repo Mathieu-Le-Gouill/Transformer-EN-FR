@@ -53,20 +53,6 @@ Below is a summary of the **training and test losses** for each epoch:
 
 ---
 
-### What is a Transformer?
-
-A **transformer** is a deep learning architecture designed for **sequence-to-sequence tasks**, such as translation, text summarization, or text generation.  
-
-**Key characteristics:**
-
-- **Attention Mechanism** – Learns which parts of the input sequence are important for generating each output token.  
-- **Parallelizable** – Processes all input tokens simultaneously, making training faster than RNNs.  
-- **Encoder–Decoder Structure:**  
-  - **Encoder:** Converts the input sequence into a context-aware representation.  
-  - **Decoder:** Generates the output sequence token by token, attending to the encoder's representation.  
-
----
-
 ### How to Run the Code
 
 #### Show help
